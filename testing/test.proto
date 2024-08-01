@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option go_package = "./pb;pb";
+
+message RecursiveMessage {
+  string a = 1;
+  sint32 b = 2;
+  RecursiveMessage nested = 3;
+}
+
+message Base {
+  string a = 1;
+  sint32 b = 2;
+  optional string c = 3;
+  string UntaggedField = 4;
+}
+
+message OptionalFields {
+  optional string a = 1;
+  optional sint32 b = 2;
+}
+
+message ArrayMap {
+  repeated sint32 array = 1;
+  map<sint32, string> map = 2;
+}
+
+message Nested {
+  string a = 1;
+  Base base = 2;
+}
+
+message NestedRecursive {
+  string a = 1;
+  sint32 b = 2;
+  NestedRecursive nested = 3;
+}
+
+message NestedRecursiveVariantA {
+  string c = 1;
+  NestedRecursiveVariantA a = 2;
+  NestedRecursiveVariantB b = 3;
+}
+
+message NestedRecursiveVariantB {
+  string c = 1;
+  NestedRecursiveVariantB b = 2;
+  NestedRecursiveVariantA a = 3;
+}
+
+message benchmarkTest {
+  string a = 1;
+  float b = 2;
+  sint32 c = 3;
+  optional bool d = 4;
+}
